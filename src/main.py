@@ -4,7 +4,7 @@ from backtester import run_backtest
 from metrics import calculate_metrics
 from visualization import plot_portfolio
 from optimizer import optimize_parameters
-results = optimize_parameters()
+results = optimize_parameters("AAPL")
 results.sort(
     key=lambda x: x["Sharpe"],
     reverse=True

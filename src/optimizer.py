@@ -4,14 +4,14 @@ from backtester import run_backtest
 from metrics import calculate_metrics
 
 
-def optimize_parameters():
+def optimize_parameters(ticker):
 
     results = []
 
     short_windows = [20, 50]
     long_windows = [100, 200]
     data = load_data(
-                "AAPL",
+                ticker,
                 "2022-01-01",
                 "2025-01-01"
             )
