@@ -136,7 +136,7 @@ The portfolio with the maximum Sharpe Ratio is identified as the optimal allocat
 
 ### Efficient Frontier Visualization
 
-![Efficient Frontier](assets/graph.png)
+![Efficient Frontier](assets/Graph.png)
 ## Risk Metrics
 
 ### Annual Return
