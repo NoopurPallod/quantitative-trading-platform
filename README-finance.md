@@ -246,7 +246,7 @@ Simulate asymmetric sector-specific and company-specific shocks.
 
 ## Portfolio Optimization Dashboard
 
-![](assets/Portfolio.png)
+![](assets/Portfoilo.png)
 
 ## Risk Analytics Dashboard
 

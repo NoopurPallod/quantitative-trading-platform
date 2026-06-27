@@ -45,7 +45,7 @@ The platform enables users to analyze individual stocks, backtest systematic tra
 
 ## Portfolio Optimization Dashboard
 
-![](assets/Portfolio.png)
+![](assets/Portfoilo.png)
 
 ## Risk Analytics Dashboard
 

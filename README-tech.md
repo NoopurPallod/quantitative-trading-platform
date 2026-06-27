@@ -174,7 +174,7 @@ Trading-Platform/
 
 ## Portfolio Optimization Dashboard
 
-![](assets/Portfolio.png)
+![](assets/Portfoilo.png)
 
 ## Risk Analytics Dashboard
 
