@@ -312,4 +312,4 @@ This project demonstrates understanding of:
 
 # Author
 
-Developed by Noop as a quantitative finance, portfolio analytics, and risk management project.
+Developed by Noopur as a quantitative finance, portfolio analytics, and risk management project.

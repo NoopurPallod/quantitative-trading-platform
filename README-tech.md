@@ -233,4 +233,4 @@ npm run dev
 
 ## Author
 
-Developed by Noop as a full-stack software engineering and analytics project.
+Developed by Noopur as a full-stack software engineering and analytics project.

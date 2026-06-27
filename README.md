@@ -209,4 +209,4 @@ The platform evaluates portfolio performance under multiple adverse market condi
 
 ## Author
 
-Developed by Noop as a quantitative finance and full-stack analytics project.
+Developed by Noopur as a quantitative finance and full-stack analytics project.
