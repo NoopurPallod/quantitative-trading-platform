@@ -1,6 +1,10 @@
 from data_loader import load_data
 import pandas as pd
 import numpy as np
+import matplotlib.pyplot as plt
+from risk_metrics import calculate_var
+from stress_test import stress_test
+
 np.random.seed(42)
 stocks = [
     "AAPL",  
@@ -108,3 +112,90 @@ print("\nMaximum Sharpe Ratio")
 print(max(portfolio_sharpe_list)) 
 print("\nAverage Sharpe Ratio") 
 print(np.mean(portfolio_sharpe_list))
+
+print("\nRisk Analysis")
+
+best_portfolio_returns = returns.dot(
+    weights_list[best_index]
+)
+
+var_95 = calculate_var(
+    best_portfolio_returns
+)
+
+print(
+    f"95% VaR: {var_95:.2%}"
+)
+
+market_crash = {
+    stock: -0.20
+    for stock in stocks
+}
+
+severe_crash = {
+    stock: -0.40
+    for stock in stocks
+}
+
+random_stress = {}
+
+for stock in stocks:
+    random_stress[stock] = -np.random.uniform(
+        0.10,
+        0.50
+    )
+stress_results = []
+scenarios = {
+    "Market Crash": market_crash,
+    "Severe Crash": severe_crash,
+    "Random Stress": random_stress
+}
+for scenario_name, scenario in scenarios.items():
+
+    portfolio_loss_pct, stressed_value, loss = stress_test(
+        stocks,
+        weights_list[best_index],
+        scenario,
+        100000
+    )
+
+    stress_results.append({
+        "Scenario": scenario_name,
+        "Loss %": round(portfolio_loss_pct * 100, 2),
+        "Portfolio Value": round(stressed_value, 2),
+        "Loss Amount": round(loss, 2)
+    })
+report = pd.DataFrame(stress_results)
+print("\nStress Testing Report\n")
+print(report)
+plt.figure(figsize=(10, 6))
+
+scatter = plt.scatter(
+    portfolio_volatility_list,
+    portfolio_returns_list,
+    c=portfolio_sharpe_list
+)
+
+plt.xlabel("Volatility")
+plt.ylabel("Return")
+plt.title("Efficient Frontier")
+
+plt.colorbar(
+    scatter,
+    label="Sharpe Ratio"
+)
+
+best_return = portfolio_returns_list[best_index]
+best_volatility = portfolio_volatility_list[best_index]
+
+plt.scatter(
+    best_volatility,
+    best_return,
+    marker="*",
+    s=300,
+    label="Best Portfolio"
+)
+
+plt.legend()
+
+plt.show()

@@ -10,18 +10,16 @@ def optimize_parameters(ticker):
 
     short_windows = [20, 50]
     long_windows = [100, 200]
-    data = load_data(
-                ticker,
-                "2022-01-01",
-                "2025-01-01"
-            )
-
+    original_data = load_data(
+    ticker,
+    "2022-01-01",
+    "2025-01-01"
+)
     for short_window in short_windows:
 
         for long_window in long_windows:
 
-            
-
+            data = original_data.copy()
             data = generate_signals(
                 data,
                 short_window,
@@ -40,11 +38,11 @@ def optimize_parameters(ticker):
             )
 
             results.append({
-                "Short MA": short_window,
-                "Long MA": long_window,
-                "Return": round(metrics["return_pct"], 2),
-                "Sharpe": round(metrics["sharpe_ratio"], 2)
-            })
+    "Short MA": short_window,
+    "Long MA": long_window,
+    "Return": round(metrics["return_pct"], 2),
+    "Sharpe": round(metrics["sharpe_ratio"], 2),
+})
     
 
     return results
