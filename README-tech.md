@@ -1,123 +1,68 @@
+
 # Quant Trading Dashboard (Technical Overview)
+[![Python Tests](https://github.com/NoopurPallod/quantitative-trading-platform/actions/workflows/tests.yml/badge.svg)](https://github.com/NoopurPallod/quantitative-trading-platform/actions/workflows/tests.yml)
 
-A full-stack analytics platform built using React, FastAPI, and Python.
-
-The application demonstrates end-to-end software engineering principles including frontend development, REST API design, backend analytics services, data processing pipelines, and interactive data visualization.
-
----
-
-## Overview
-
-The platform allows users to:
-
-* Analyze historical stock data
-* Execute strategy backtests
-* Compare trading strategies
-* Perform portfolio optimization
-* Evaluate risk metrics
-* Visualize financial analytics through an interactive web interface
-
-The system is built using a modular architecture that separates data ingestion, analytics, API services, and frontend presentation layers.
+A full-stack analytics platform built with Python, FastAPI, React, Pandas, and NumPy that enables users to analyze historical stock data, backtest trading strategies, optimize portfolios, and visualize performance through an interactive dashboard.
 
 ---
 
-## Technical Features
+## Features
 
-### Frontend
+### Full-Stack Architecture
 
-* React-based user interface
-* Component-driven architecture
-* State management using React Hooks
-* API integration using Axios
-* Interactive visualizations using Recharts
-* Responsive dashboard layout
+* Built a React frontend and FastAPI backend connected through REST APIs.
+* Implemented modular backend services for data processing, analytics, optimization, and visualization.
+* Designed reusable frontend components and interactive dashboards.
+
+### Stock Analytics Engine
+
+* Processes historical market data using Pandas and NumPy.
+* Generates trading signals using moving-average crossover strategies.
+* Evaluates strategy performance across multiple parameter combinations.
+* Computes returns, volatility, drawdowns, and performance metrics.
+
+### Backtesting Framework
+
+* Simulates trading strategies on historical market data.
+* Tracks portfolio evolution over time.
+* Computes daily returns and cumulative portfolio performance.
+* Enables comparison between multiple strategy configurations.
+
+### Portfolio Optimization
+
+* Generates 5,000+ portfolio allocations using Monte Carlo simulation.
+* Evaluates risk-return tradeoffs across asset combinations.
+* Identifies optimal allocations based on configurable performance criteria.
+
+### Risk Analysis
+
+* Portfolio volatility measurement.
+* Value-at-Risk (VaR) estimation.
+* Scenario-based stress testing.
+* Downside risk evaluation under adverse market conditions.
+
+### Software Engineering Features
+
+* RESTful API architecture using FastAPI.
+* Automated testing using Pytest.
+* Continuous Integration using GitHub Actions.
+* Modular and maintainable codebase.
+* Git-based development workflow.
+
+---
+
+## Tech Stack
+
+### Languages
+
+* Python
+* JavaScript
 
 ### Backend
 
-* FastAPI REST API
-* Modular analytics engine
-* Portfolio optimization service
-* Strategy evaluation service
-* Risk analysis service
-* JSON-based API responses
-
-### Data Processing
-
-* Historical market data ingestion
-* Data cleaning and transformation
-* Time-series return calculations
-* Statistical analysis pipelines
-* Risk metric computation
-
----
-
-## System Architecture
-
-```text
-React Frontend
-       │
-       ▼
-Axios API Requests
-       │
-       ▼
-FastAPI Backend
-       │
- ┌───────────────┬───────────────┬───────────────┐
- │               │               │
- ▼               ▼               ▼
-Strategy      Portfolio       Risk
-Engine        Engine          Engine
- │               │               │
- └───────────────┴───────────────┘
-               │
-               ▼
-      Data Processing Layer
-               │
-               ▼
-       Market Data Source
-```
-
----
-
-## Key Components
-
-### Strategy Engine
-
-Responsible for:
-
-* Moving average generation
-* Signal creation
-* Strategy evaluation
-* Performance comparison
-
-### Backtesting Engine
-
-Responsible for:
-
-* Trade simulation
-* Portfolio value tracking
-* Historical performance measurement
-
-### Portfolio Optimization Engine
-
-Responsible for:
-
-* Portfolio generation
-* Monte Carlo simulation
-* Allocation optimization
-* Risk-adjusted performance analysis
-
-### Risk Analytics Engine
-
-Responsible for:
-
-* Value-at-Risk computation
-* Stress testing
-* Volatility analysis
-
----
-
-## Technology Stack
+* FastAPI
+* Pandas
+* NumPy
 
 ### Frontend
 
@@ -126,47 +71,82 @@ Responsible for:
 * Recharts
 * CSS
 
-### Backend
+### Tooling
 
-* FastAPI
-* Python
+* Git
+* GitHub
+* GitHub Actions
+* Pytest
 
-### Data & Analytics
+---
+## Development Workflow
 
-* Pandas
-* NumPy
-* yFinance
+* Source Control: Git & GitHub
+* Continuous Integration: GitHub Actions
+* Testing Framework: Pytest
+* Automated validation on every push and pull request
+---
+## System Design
+
+Frontend (React)
+
+↓
+
+REST API Layer (FastAPI)
+
+↓
+
+Analytics Services
+
+├── Data Loading
+
+├── Signal Generation
+
+├── Backtesting
+
+├── Portfolio Optimization
+
+├── Risk Analysis
+
+↓
+
+Market Data Processing
+
+(Pandas + NumPy)
 
 ---
 
-## Project Structure
+## Key Engineering Highlights
 
-```text
-Trading-Platform/
-
-├── frontend/
-│   ├── src/
-│   ├── App.jsx
-│   └── App.css
-│
-├── backend/
-│   └── main.py
-│
-├── src/
-│   ├── analyze.py
-│   ├── optimizer.py
-│   ├── portfolio_optimizer.py
-│   ├── strategy.py
-│   ├── backtester.py
-│   ├── metrics.py
-│   ├── risk_metrics.py
-│   ├── stress_test.py
-│   └── data_loader.py
-```
+* Developed a modular analytics pipeline separating data ingestion, strategy generation, optimization, and risk evaluation.
+* Built REST APIs enabling seamless communication between frontend and backend services.
+* Implemented numerical simulations and statistical computations using vectorized NumPy operations.
+* Designed reusable React components for dashboards, charts, and portfolio visualizations.
+* Added automated CI pipelines using GitHub Actions to validate code changes on every push and pull request.
+* Implemented automated tests covering API endpoints, optimization modules, analytics workflows, and risk calculations.
 
 ---
 
-## Dashboard Screenshots
+## Test Coverage
+
+Automated tests cover:
+
+* API endpoints
+* Portfolio optimization
+* Strategy generation
+* Risk metrics
+* Stress testing
+* End-to-end workflows
+
+Current CI Status:
+
+✅ GitHub Actions Passing
+
+---
+
+## Screenshots
+
+### Dashboard Overview
 
 ## Single Stock Strategy Analysis
 
@@ -182,55 +162,46 @@ Trading-Platform/
 
 ---
 
-## Installation
+## Running Locally
 
 ### Backend
 
 ```bash
-cd backend
-
 pip install -r requirements.txt
-
 python -m uvicorn main:app --reload
 ```
 
 ### Frontend
 
 ```bash
-cd frontend
-
 npm install
-
 npm run dev
 ```
 
 ---
 
-## Engineering Highlights
-
-* Full-stack application architecture
-* REST API development with FastAPI
-* Data processing using Pandas and NumPy
-* Monte Carlo simulation implementation
-* Interactive financial data visualization
-* Modular backend design
-* Separation of concerns across services
-* End-to-end analytics workflow
-
----
-
 ## Future Enhancements
 
-* Authentication & User Accounts
-* Database Integration
-* Docker Deployment
-* Cloud Hosting
-* Real-Time Market Data
-* Strategy Plug-in Framework
-* Automated Report Generation
+* Dockerized deployment
+* User authentication
+* Portfolio persistence with databases
+* Real-time market data integration
+* Advanced quantitative strategies
+* Cloud deployment pipeline
 
 ---
 
-## Author
+## Learning Outcomes
 
-Developed by Noopur as a full-stack software engineering and analytics project.
+This project provided hands-on experience with:
+
+* Full-Stack Development
+* REST API Design
+* Python Backend Engineering
+* React Frontend Development
+* Data Processing Pipelines
+* Automated Testing
+* Continuous Integration (CI/CD)
+* Software Architecture
+* Git-Based Collaboration
+* Numerical Computing with Pandas and NumPy

@@ -1,4 +1,5 @@
 # Quant Trading Dashboard
+[![Python Tests](https://github.com/NoopurPallod/quantitative-trading-platform/actions/workflows/tests.yml/badge.svg)](https://github.com/NoopurPallod/quantitative-trading-platform/actions/workflows/tests.yml)
 
 A full-stack quantitative trading and portfolio analytics platform built using React, FastAPI, and Python.
 
