@@ -37,10 +37,21 @@ def home():
 
 @app.get("/analyze")
 def analyze(ticker: str):
+
+    if not ticker.strip():
+        raise HTTPException(
+            status_code=400,
+            detail="Ticker cannot be empty"
+        )
+
     try:
         return analyze_stock(ticker)
+
     except ValueError as exc:
-        raise HTTPException(status_code=400, detail=str(exc)) from exc
+        raise HTTPException(
+            status_code=400,
+            detail=str(exc)
+        ) from exc
 
 class PortfolioRequest(BaseModel):
     stocks: list[str]
