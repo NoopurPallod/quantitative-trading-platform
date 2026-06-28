@@ -1,9 +1,9 @@
-from fastapi import FastAPI
+import os
+import sys
+
+from fastapi import FastAPI, HTTPException
 from fastapi.middleware.cors import CORSMiddleware
 from pydantic import BaseModel
-from portfolio_optimizer import optimize_portfolio
-import sys
-import os
 
 sys.path.append(
     os.path.abspath(
@@ -14,7 +14,11 @@ sys.path.append(
         )
     )
 )
+
+from portfolio_optimizer import optimize_portfolio
 from analyze import analyze_stock
+from validation import validate_stock_list
+
 app = FastAPI()
 
 app.add_middleware(
@@ -33,15 +37,18 @@ def home():
 
 @app.get("/analyze")
 def analyze(ticker: str):
-
-    return analyze_stock(ticker)
+    try:
+        return analyze_stock(ticker)
+    except ValueError as exc:
+        raise HTTPException(status_code=400, detail=str(exc)) from exc
 
 class PortfolioRequest(BaseModel):
     stocks: list[str]
 
 @app.post("/portfolio")
 def portfolio(request: PortfolioRequest):
-
-    return optimize_portfolio(
-        request.stocks
-    )
+    try:
+        stocks = validate_stock_list(request.stocks)
+        return optimize_portfolio(stocks)
+    except ValueError as exc:
+        raise HTTPException(status_code=400, detail=str(exc)) from exc

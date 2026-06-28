@@ -1,12 +1,46 @@
 from data_loader import load_data
 from risk_metrics import calculate_var
 from stress_test import stress_test
+from validation import validate_stock_list
 
 import pandas as pd
 import numpy as np
 
 
+SIMULATION_COUNT = 5000
+RISK_FREE_RATE = 0.05
+INITIAL_PORTFOLIO_VALUE = 100000
+
+
+def calculate_portfolio_performance(returns, weights, risk_free_rate=RISK_FREE_RATE):
+    portfolio_return = np.sum(
+        returns.mean() * weights
+    ) * 252
+
+    portfolio_volatility = np.sqrt(
+        np.dot(
+            weights.T,
+            np.dot(
+                returns.cov() * 252,
+                weights
+            )
+        )
+    )
+
+    sharpe_ratio = (
+        portfolio_return
+        - risk_free_rate
+    ) / portfolio_volatility
+
+    return (
+        float(portfolio_return),
+        float(portfolio_volatility),
+        float(sharpe_ratio)
+    )
+
+
 def optimize_portfolio(stocks):
+    stocks = validate_stock_list(stocks)
 
     np.random.seed(42)
 
@@ -29,9 +63,7 @@ def optimize_portfolio(stocks):
     portfolio_sharpe_list = []
     weights_list = []
 
-    risk_free_rate = 0.05
-
-    for _ in range(5000):
+    for _ in range(SIMULATION_COUNT):
 
         weights = np.random.random(
             len(stocks)
@@ -42,24 +74,14 @@ def optimize_portfolio(stocks):
             / np.sum(weights)
         )
 
-        portfolio_return = np.sum(
-            returns.mean() * weights
-        ) * 252
-
-        portfolio_volatility = np.sqrt(
-            np.dot(
-                weights.T,
-                np.dot(
-                    returns.cov() * 252,
-                    weights
-                )
-            )
+        (
+            portfolio_return,
+            portfolio_volatility,
+            sharpe_ratio
+        ) = calculate_portfolio_performance(
+            returns,
+            weights
         )
-
-        sharpe_ratio = (
-            portfolio_return
-            - risk_free_rate
-        ) / portfolio_volatility
 
         portfolio_returns_list.append(
             portfolio_return
@@ -145,7 +167,7 @@ def optimize_portfolio(stocks):
             stocks,
             best_weights,
             scenario,
-            100000
+            INITIAL_PORTFOLIO_VALUE
         )
 
         stress_results.append({

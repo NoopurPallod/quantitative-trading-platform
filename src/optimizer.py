@@ -2,16 +2,18 @@ from data_loader import load_data
 from strategy import generate_signals
 from backtester import run_backtest
 from metrics import calculate_metrics
+from validation import normalize_ticker
 
 
 def optimize_parameters(ticker):
+    normalized_ticker = normalize_ticker(ticker)
 
     results = []
 
     short_windows = [20, 50]
     long_windows = [100, 200]
     original_data = load_data(
-    ticker,
+    normalized_ticker,
     "2022-01-01",
     "2025-01-01"
 )

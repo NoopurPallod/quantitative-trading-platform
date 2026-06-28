@@ -1,11 +1,13 @@
 from optimizer import optimize_parameters
 from data_loader import load_data
 from strategy import generate_signals
+from validation import normalize_ticker
 
 
 def analyze_stock(ticker):
+    normalized_ticker = normalize_ticker(ticker)
 
-    results = optimize_parameters(ticker)
+    results = optimize_parameters(normalized_ticker)
 
     results.sort(
         key=lambda x: x["Sharpe"],
@@ -17,10 +19,8 @@ def analyze_stock(ticker):
         key=lambda x: x["Sharpe"]
     )
 
-    print("Reached here")
-
     data = load_data(
-        ticker,
+        normalized_ticker,
         "2022-01-01",
         "2025-01-01"
     )
@@ -52,7 +52,7 @@ def analyze_stock(ticker):
         })
 
     return {
-        "ticker": ticker,
+        "ticker": normalized_ticker,
         "best_strategy": best_strategy,
         "all_strategies": results,
         "chart_data": chart_data
