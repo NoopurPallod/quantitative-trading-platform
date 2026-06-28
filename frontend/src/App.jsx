@@ -56,7 +56,7 @@ function App() {
 
   async function runAnalysis() {
     const response = await axios.get(
-      `http://127.0.0.1:8000/analyze?ticker=${stock}`
+      `https://quantitative-trading-platform.onrender.com/analyze?ticker=${stock}`
     );
 
     setResult(response.data);
@@ -80,7 +80,7 @@ function App() {
 
   async function optimizePortfolio() {
     const response = await axios.post(
-      "http://127.0.0.1:8000/portfolio",
+      "https://quantitative-trading-platform.onrender.com/portfolio",
       {
         stocks: portfolioStocks
       }
