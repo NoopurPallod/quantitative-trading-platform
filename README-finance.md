@@ -5,6 +5,11 @@ A quantitative finance platform designed to evaluate systematic trading strategi
 The platform combines strategy backtesting, portfolio optimization, Value-at-Risk estimation, and stress testing within an interactive analytics dashboard.
 
 ---
+## Live Demo
+
+https://quantitative-trading-platform.vercel.app
+
+---
 
 # Investment Research Workflow
 

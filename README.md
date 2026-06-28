@@ -6,6 +6,11 @@ A full-stack quantitative trading and portfolio analytics platform built using R
 The platform enables users to analyze individual stocks, backtest systematic trading strategies, optimize portfolio allocations, and evaluate portfolio risk through Value-at-Risk (VaR) and stress testing methodologies.
 
 ---
+## Live Demo
+
+https://quantitative-trading-platform.vercel.app
+
+---
 
 ## Features
 

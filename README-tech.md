@@ -2,6 +2,12 @@
 # Quant Trading Dashboard (Technical Overview)
 [![Python Tests](https://github.com/NoopurPallod/quantitative-trading-platform/actions/workflows/tests.yml/badge.svg)](https://github.com/NoopurPallod/quantitative-trading-platform/actions/workflows/tests.yml)
 
+## Live Demo
+
+https://quantitative-trading-platform.vercel.app
+
+---
+
 A full-stack analytics platform built with Python, FastAPI, React, Pandas, and NumPy that enables users to analyze historical stock data, backtest trading strategies, optimize portfolios, and visualize performance through an interactive dashboard.
 
 ---
